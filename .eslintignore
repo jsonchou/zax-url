@@ -11,7 +11,7 @@ dll/
 scripts/
 styles/
 plugins/
-libs/
+lib/
 public/
 router/
 *.json

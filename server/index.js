@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
         // browser dir
         let data = fs.readFileSync(path.join(rootPublic, 'demo', 'index.html'))
         res.end(data)
-    } else if (req.url.indexOf('/libs') > -1) {
+    } else if (req.url.indexOf('/lib') > -1) {
         let data = fs.readFileSync(path.join(rootPublic, req.url))
         res.end(data)
     } else {

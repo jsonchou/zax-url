@@ -196,7 +196,7 @@ export declare function basename(url: string): string;
  * @example
  * ```js
  * pathmain("https://demo.com/foo/index?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar")
- * => /index?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar
+ * => /foo/index?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar
  * ```
  *
  * @param url {String} url

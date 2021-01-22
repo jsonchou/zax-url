@@ -2,20 +2,20 @@
 	"name": "zax-url",
 	"version": "2.0.10",
 	"description": "zax-url",
-	"main": "./libs/cjs",
+	"main": "./lib/cjs",
 	"sideEffects": false,
 	"directories": {
 		"test": "test",
-		"lib": "libs",
+		"lib": "lib",
 		"doc": "docs"
 	},
-	"typings": "./libs/es/index.d.ts",
+	"typings": "./lib/es/index.d.ts",
 	"scripts": {
 		"lint": "eslint --ext .ts src/",
 		"lint:fix": "eslint --fix --ext .ts src/",
-		"build:cjs": "rimraf './libs/cjs' && tsc -t 'ES5' -m 'CommonJS' --outDir './libs/cjs' ",
-		"build:es": "rimraf './libs/es' && tsc -t 'ES6' -m 'ESNext' --outDir './libs/es' ",
-		"build:umd": "rimraf './libs/umd' && tsc -t 'ES5' -m 'UMD' --outDir './libs/umd' ",
+		"build:cjs": "rimraf './lib/cjs' && tsc -t 'ES5' -m 'CommonJS' --outDir './lib/cjs' ",
+		"build:es": "rimraf './lib/es' && tsc -t 'ES6' -m 'ESNext' --outDir './lib/es' ",
+		"build:umd": "rimraf './lib/umd' && tsc -t 'ES5' -m 'UMD' --outDir './lib/umd' ",
 		"doc:index": "rimraf './docs/*.md' && jsdoc2md --files ./src/index.ts --no-cache --configure ./jsdoc2md.json > ./docs/README.md",
 		"docs": "npm-run-all -p doc:**",
 		"build": "npm-run-all -p build:**",
@@ -31,7 +31,7 @@
 		"test": true,
 		"docs": true,
 		"cleanDirs": [
-			"libs/**"
+			"lib/**"
 		]
 	},
 	"keywords": [
@@ -40,7 +40,8 @@
 		"url"
 	],
 	"files": [
-		"libs/*",
+		"src/*",
+		"lib/*",
 		"types/*"
 	],
 	"repository": {
@@ -61,24 +62,28 @@
 	"private": false,
 	"types": "types/index.d.ts",
 	"devDependencies": {
-		"@babel/cli": "^7.8.4",
-		"@babel/core": "^7.8.7",
-		"@babel/plugin-proposal-class-properties": "^7.8.3",
-		"@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-		"@babel/plugin-transform-runtime": "^7.8.3",
-		"@babel/preset-env": "^7.8.7",
-		"@babel/preset-typescript": "^7.8.3",
-		"@types/jest": "^24.9.1",
-		"@types/jsdom": "^12.2.4",
+		"@babel/cli": "^7.12.10",
+		"@babel/core": "^7.12.10",
+		"@babel/plugin-proposal-class-properties": "^7.12.1",
+		"@babel/plugin-proposal-decorators": "^7.12.12",
+		"@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+		"@babel/plugin-transform-runtime": "^7.12.10",
+		"@babel/preset-env": "^7.12.11",
+		"@babel/preset-typescript": "^7.12.7",
+		"@types/jest": "^26.0.20",
+		"@types/jsdom": "^16.2.6",
 		"@types/node": "^12.12.30",
+		"babel-jest": "^26.6.3",
+		"babel-plugin-import": "^1.13.3",
 		"chalk": "^2.4.2",
 		"codecov": "^3.6.5",
 		"done-rainbow": "^0.1.2",
 		"fs-extra": "^8.1.0",
 		"glob": "^7.1.6",
-		"jest": "^24.9.0",
+		"jest": "^26.6.3",
 		"jsdoc-babel": "^0.5.0",
-		"jsdoc-to-markdown": "^5.0.3",
+		"jsdoc-to-markdown": "^6.0.1",
+		"jsdom": "^16.4.0",
 		"npm-run-all": "^4.1.5",
 		"rimraf": "^3.0.2",
 		"rollup": "^0.66.6",
@@ -90,7 +95,6 @@
 		"rollup-plugin-uglify": "^6.0.4",
 		"ts-jest": "^24.3.0",
 		"tslib": "^1.11.1",
-		"jsdom": "^15.2.1",
 		"typescript": "^3.8.3"
 	},
 	"jest": {
@@ -98,8 +102,9 @@
 			"<rootDir>/__mocks__/index.ts"
 		],
 		"transform": {
-			".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-		},
+			"^.+\\.(ts|tsx)?$": "ts-jest",
+			"^.+\\.(js|jsx)$": "babel-jest"
+		  },
 		"testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
 		"moduleFileExtensions": [
 			"ts",
@@ -112,7 +117,7 @@
 			"/build/",
 			"/types/",
 			"/test/",
-			"/libs/"
+			"/lib/"
 		],
 		"coverageThreshold": {
 			"global": {

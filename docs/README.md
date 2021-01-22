@@ -240,5 +240,5 @@ basename("https://demo.com/foo/dairy.txt?bizOrigin=foo&other=quz#/path/id=3?bizO
 **Example**  
 ```js
 pathmain("https://demo.com/foo/index?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar")
-=> /index?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar
+=> /foo/index?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar
 ```
