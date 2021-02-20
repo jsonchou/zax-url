@@ -176,7 +176,7 @@ pathKey("https://demo.com/foo/index?bizOrigin=foo&other=quz#/path/id=3?bizOrigin
 => index
 
 
-pathKey("https://demo.com/foo//index/p123?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar",1)
+pathKey("https://demo.com/foo/index/p123?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar",1)
 => 123
 
 

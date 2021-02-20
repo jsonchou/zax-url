@@ -101,27 +101,7 @@ export function get(url: string, key?: string): string {
 }
 
 type Nothing77 = {}
-
 /**
-*
-* set & get new url
-*
-* @example
-*
-* ```js
-* set("pages/foo/index?id=2", 'foo','bar')
-* => pages/foo/index?id=2&foo=bar
-* ```
-*
-* @name set
-* @function
-* @override
-* @param url {String} url
-* @param key {String} key
-* @param value {String} value
-* @returns {String} new url
-*
-*//**
  *
  * set & get new url
  *
@@ -140,7 +120,26 @@ type Nothing77 = {}
  *
  */
 
-// export function set(url: string, kvGroups: IKV): string
+/**
+ *
+ * set & get new url
+ *
+ * @example
+ *
+ * ```js
+ * set("pages/foo/index?id=2", 'foo','bar')
+ * => pages/foo/index?id=2&foo=bar
+ * ```
+ *
+ * @name set
+ * @function
+ * @override
+ * @param url {String} url
+ * @param key {String} key
+ * @param value {String} value
+ * @returns {String} new url
+ *
+ */ // export function set(url: string, kvGroups: IKV): string
 // export function set(url: string, key: string, value: string): string
 export function set(url: string, key: string | IKV, value: string = ''): string {
 	if (!key) {
@@ -310,7 +309,7 @@ type Nothing6 = {}
  * => index
  *
  *
- * pathKey("https://demo.com/foo//index/p123?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar",1)
+ * pathKey("https://demo.com/foo/index/p123?bizOrigin=foo&other=quz#/path/id=3?bizOrigin=bar",1)
  * => 123
  *
  *
