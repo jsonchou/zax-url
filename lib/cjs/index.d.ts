@@ -6,7 +6,8 @@
  * @see https://github.com/jsonchou/zax-url
  * @see https://github.com/microsoft/TypeScript/issues/25590
  */
-export declare type IKV = Record<string, string | number>;
+export declare type TypePossible = string | number | boolean | null | undefined;
+export declare type IKV = Record<string, TypePossible>;
 export declare type UrlDescriptor = {
     href: string;
     hash: string;
@@ -34,25 +35,6 @@ export declare type UrlDescriptor = {
  */
 export declare function get(url: string, key?: string): string;
 /**
-*
-* set & get new url
-*
-* @example
-*
-* ```js
-* set("pages/foo/index?id=2", 'foo','bar')
-* => pages/foo/index?id=2&foo=bar
-* ```
-*
-* @name set
-* @function
-* @override
-* @param url {String} url
-* @param key {String} key
-* @param value {String} value
-* @returns {String} new url
-*
-*/ /**
  *
  * set & get new url
  *
@@ -70,7 +52,26 @@ export declare function get(url: string, key?: string): string;
  * @returns {String} new url
  *
  */
-export declare function set(url: string, key: string | IKV, value?: string): string;
+/**
+ *
+ * set & get new url
+ *
+ * @example
+ *
+ * ```js
+ * set("pages/foo/index?id=2", 'foo','bar')
+ * => pages/foo/index?id=2&foo=bar
+ * ```
+ *
+ * @name set
+ * @function
+ * @override
+ * @param url {String} url
+ * @param key {String} key
+ * @param value {String} value
+ * @returns {String} new url
+ *
+ */ export declare function set(url: string, key: string | IKV, value?: TypePossible): string;
 /**
  * delete key & get new url
  *
