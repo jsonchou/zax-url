@@ -38,8 +38,8 @@
 
 **Example**  
 ```js
-get("pages/index?id=2", 'id')
-=> 2
+get("pages/index?id=0&v=1", 'id')
+=> 0
 ```
 <a name="module_zaxUrl..set"></a>
 
@@ -56,8 +56,8 @@ get("pages/index?id=2", 'id')
 
 **Example**  
 ```js
-set("pages/index?id=2", {k:1,v:'t'})
-=> pages/index?id=2&k=1&v=t
+set("pages/index?id=2", { k: 1, v: "t", v1: null, v2: false, v3: undefined, v4: 0 })
+=> pages/index?id=2&k=1&v=t&v2=false&v4=0
 ```
 <a name="module_zaxUrl..set"></a>
 

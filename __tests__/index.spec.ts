@@ -14,9 +14,11 @@ describe('zaxUrl', () => {
 		})
 	})
 
-	// beforeEach(()=>{
-
-	// })
+	beforeEach(() => {
+		// const location = window.location
+		// delete global['window']['location']
+		// global['window']['location'] = Object.assign({}, { ...location, href: 'http://localhost' })
+	})
 
 	it(`parse`, () => {
 		expect(parse(mixUrl)).toEqual({

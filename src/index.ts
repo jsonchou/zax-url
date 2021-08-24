@@ -22,7 +22,6 @@ export type UrlDescriptor = {
 	protocol?: string
 }
 
-type Nothing9 = {}
 
 let zaxUtil: Record<string, any> = {
 	strToObj(query: string): IKV {
@@ -56,12 +55,14 @@ let zaxUtil: Record<string, any> = {
 				return '443'
 			default:
 				/* istanbul ignore next */
-				return location.port || '80'
+				if (typeof document !== 'undefined') {
+					return location.port || '80'
+				}
+				return '80'
 		}
 	}
 }
 
-type Nothing91 = {}
 
 /**
  * get value from url search part mode
@@ -70,8 +71,8 @@ type Nothing91 = {}
  * @function
  * @example
  * ```js
- * get("pages/index?id=2", 'id')
- * => 2
+ * get("pages/index?id=0&v=1", 'id')
+ * => 0
  * ```
  * @param key {String} key
  * @param url {String} url
@@ -104,7 +105,6 @@ export function get(url: string, key?: string): string {
 	return (searchObj[key] as string) || ''
 }
 
-type Nothing77 = {}
 /**
  *
  * set & get new url
@@ -112,8 +112,8 @@ type Nothing77 = {}
  * @example
  *
  * ```js
- * set("pages/index?id=2", {k:1,v:'t'})
- * => pages/index?id=2&k=1&v=t
+ * set("pages/index?id=2", { k: 1, v: "t", v1: null, v2: false, v3: undefined, v4: 0 })
+ * => pages/index?id=2&k=1&v=t&v2=false&v4=0
  * ```
  *
  * @name set
@@ -173,7 +173,6 @@ export function set(url: string, key: string | IKV, value: TypePossible = ''): s
 	return left + mid + right
 }
 
-type Nothing3 = {}
 
 /**
  * delete key & get new url
@@ -192,7 +191,6 @@ export function del(url: string, key: string): string {
 	return set(url, key, '')
 }
 
-type Nothing2 = {}
 
 /**
  * get key of value of url
@@ -256,7 +254,6 @@ export function parse(url: string): UrlDescriptor {
 	}
 }
 
-type Nothing4 = {}
 
 /**
  * get url search part
@@ -279,7 +276,6 @@ export function search(url: string): IKV {
 	return zaxUtil.strToObj(search)
 }
 
-type Nothing5 = {}
 
 /**
  * get url hash part without # prefix
@@ -302,7 +298,6 @@ export function hash(url: string): string {
 	return hash
 }
 
-type Nothing6 = {}
 
 /**
  * get last url part of key
@@ -332,7 +327,6 @@ export function pathKey(url: string, pos = 0): string {
 	return last.slice(pos)
 }
 
-type Nothing11 = {}
 
 /**
  * get extname from path
@@ -364,7 +358,6 @@ export function extname(url: string): string {
 	return ''
 }
 
-type Nothing10 = {}
 
 /**
  * get basename from path
@@ -387,7 +380,6 @@ export function basename(url: string): string {
 	return last || ''
 }
 
-type Nothing8 = {}
 
 /**
  * remove host and left pathname + search + hash

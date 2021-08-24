@@ -28,7 +28,7 @@ or
 import zaxUrl, { parse, get, set, del, search, hash, pathKey, basename, extname, pathmain } from 'zax-url'
 ~~~
 
-## [Docs](https://github.com/jsonchou/zax-url/tree/master/docs)
+## [Document](https://github.com/jsonchou/zax-url/tree/master/doc)
 
 ## [Test Case](https://github.com/jsonchou/zax-url/blob/master/__tests__/index.spec.ts)
 
