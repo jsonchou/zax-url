@@ -181,6 +181,14 @@ describe('zaxUrl', () => {
 		expect(set('/pages/home/index', { k: 1, v: undefined })).toEqual('/pages/home/index?k=1')
 		expect(set('/pages/home/index', { k: 1, v: null })).toEqual('/pages/home/index?k=1')
 
+		expect(set('/pages/home/index', { v: 0 })).toEqual('/pages/home/index?v=0')
+		expect(set('/pages/home/index', { v: false })).toEqual('/pages/home/index?v=false')
+		expect(set('/pages/home/index', { v: undefined })).toEqual('/pages/home/index')
+		expect(set('/pages/home/index', { v: null })).toEqual('/pages/home/index')
+
+		expect(set('/pages/home/index', { v1: 0, v2: false, v3: undefined, v4: null })).toEqual('/pages/home/index?v1=0&v2=false')
+
+
 		expect(set('http://demo.com', 'foo')).toEqual('http://demo.com')
 
 		expect(set('https://a-uat.demo.com/p/83755233', 'accessKey', '123')).toEqual('https://a-uat.demo.com/p/83755233?accessKey=123')
