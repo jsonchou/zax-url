@@ -129,7 +129,14 @@ describe('zaxUrl', () => {
 	it(`get`, () => {
 		expect(get(mixUrl, 'bizOrigin')).toEqual('foo')
 		expect(get('http://demo.com/?id=1', 'bizOrigin')).toEqual('')
+		expect(get('http://demo.com/?id=1', 'id')).toEqual('1')
 		expect(get('http://demo.com/?id=1', '')).toEqual('')
+		expect(get('', '')).toEqual('')
+		expect(get('')).toEqual('')
+		expect(get('http://demo.com/?id=false', 'id')).toEqual('false')
+		expect(get('http://demo.com/?id=0', 'id')).toEqual('0')
+		expect(get('http://demo.com/?id=undefined', 'id')).toEqual('undefined')
+		expect(get('http://demo.com/?id=false', 'id')).toEqual('false')
 
 		let url = 'http://demo.com/?id=1'
 		Object.defineProperty(window, 'location', {
@@ -168,6 +175,11 @@ describe('zaxUrl', () => {
 		expect(set('/pages/home/index/', { k: 1, v: 't' })).toEqual('/pages/home/index/?k=1&v=t')
 		expect(set('/pages/home/index', { k: 1, v: 't' })).toEqual('/pages/home/index?k=1&v=t')
 		expect(set('/pages/home/index', { k: 1, v: '' })).toEqual('/pages/home/index?k=1')
+
+		expect(set('/pages/home/index', { k: 1, v: 0 })).toEqual('/pages/home/index?k=1&v=0')
+		expect(set('/pages/home/index', { k: 1, v: false })).toEqual('/pages/home/index?k=1&v=false')
+		expect(set('/pages/home/index', { k: 1, v: undefined })).toEqual('/pages/home/index?k=1')
+		expect(set('/pages/home/index', { k: 1, v: null })).toEqual('/pages/home/index?k=1')
 
 		expect(set('http://demo.com', 'foo')).toEqual('http://demo.com')
 

@@ -7,7 +7,8 @@
  * @see https://github.com/microsoft/TypeScript/issues/25590
  */
 
-export type IKV = Record<string, string | number>
+export type TypePossible = string | number | boolean | null | undefined
+export type IKV = Record<string, TypePossible>
 
 export type UrlDescriptor = {
 	href: string
@@ -34,11 +35,12 @@ let zaxUtil: Record<string, any> = {
 
 	objToStr(params: IKV): string {
 		return Object.keys(params)
-			.reduce((sum: string[], item: string) => {
+			.reduce((sum: string[], item) => {
 				/* istanbul ignore next */
-				if (item && params[item]) {
-					/* istanbul ignore next */
-					sum.push(`${item}=${params[item]}`)
+				if (item) {
+					if (params[item] !== null && params[item] !== undefined && params[item] !== '') {
+						sum.push(`${item}=${params[item]}`)
+					}
 				}
 				return sum
 			}, [])
@@ -86,6 +88,8 @@ export function get(url: string, key?: string): string {
 			//server side & miniprogram
 		}
 	}
+
+	/* istanbul ignore next */
 	if (!url) {
 		// console.log('url must be a string')
 		return ''
@@ -141,7 +145,7 @@ type Nothing77 = {}
  *
  */ // export function set(url: string, kvGroups: IKV): string
 // export function set(url: string, key: string, value: string): string
-export function set(url: string, key: string | IKV, value: string = ''): string {
+export function set(url: string, key: string | IKV, value: TypePossible = ''): string {
 	if (!key) {
 		return url
 	}
