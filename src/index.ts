@@ -152,7 +152,7 @@ export function set(url: string, key: string | IKV, value: TypePossible = ''): s
 
 	let searchObj = search(url) as IKV
 
-	if (Object.keys(key).length && key.constructor === Object) {
+	if (Object.keys(key).length && Object.prototype.toString.call(key) === '[object Object]') {
 		Object.assign(searchObj, key as IKV)
 	} else {
 		searchObj[key as string] = value
